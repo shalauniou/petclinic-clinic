@@ -47,7 +47,6 @@ public class ClinicRepositoryTest {
 
     private Clinic getClinic(String name, String address) {
         Clinic clinic = new Clinic();
-        clinic.setId("test_clinic_id");
         clinic.setName(name);
         clinic.setAddress(address);
         return clinic;

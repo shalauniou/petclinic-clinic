@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Clinic Service controller.
  * <p/>
- * Copyright (C) 2016 copyright.com
- * <p/>
  * Date: 4/18/2017
  *
  * @author Stanislau Halauniou
