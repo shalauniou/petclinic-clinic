@@ -1,16 +1,13 @@
-server:
-  port: 8082
-
-spring.application.name: CLINIC_SERVICE
+server.port: '${pet.clinic.clinic.server.port:8082}'
 
 eureka:
   instance:
-     leaseRenewalInterval: 10
-     leaseExperationDurationinSecond: 20
+     leaseRenewalInterval: '${pet.clinic.clinic.eureka.instance.leaseRenewalInterval:10}'
+     leaseExperationDurationinSecond: '${pet.clinic.clinic.eureka.instance.leaseExperationDurationinSecond:20}'
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:8080/eureka/
+      defaultZone: '${pet.clinic.clinic.eureka.client.serviceUrl.defaultZone:http://127.0.0.1:8080/eureka/}'
     healthcheck:
-      enabled: true
+      enabled: '${pet.clinic.clinic.eureka.client.healthCheck.enabled:true}'
     lease:
-      duration: 50
+      duration: '${pet.clinic.clinic.eureka.client.lease.duration:50}'

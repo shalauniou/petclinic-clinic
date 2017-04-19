@@ -1,0 +1,4 @@
+spring.application.name: CLINIC_SERVICE
+
+#Specify where is a Configuration Server
+spring.cloud.config.uri: http://localhost:8084
