@@ -64,7 +64,7 @@ public class Clinic implements Serializable {
         this.address = address;
     }
 
-    @OneToMany(mappedBy = "clinic", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "clinic", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnoreProperties("clinic")
     public List<Offer> getOffers() {
         return offers;
