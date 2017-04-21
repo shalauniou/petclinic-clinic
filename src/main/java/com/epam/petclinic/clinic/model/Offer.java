@@ -28,8 +28,6 @@ public class Offer implements Serializable {
 
     private ClinicService clinicService;
 
-
-    //--------Getters---------
     @Id
     @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
@@ -54,8 +52,6 @@ public class Offer implements Serializable {
         return clinicService;
     }
 
-
-    //----------Setters----------
     public void setId(String id) {
         this.id = id;
     }

@@ -1,9 +1,5 @@
 import groovy.sql.Sql
 
-String username = "${username}".toString()
-String admin = "${admin}".toString()
-String password = "${password}".toString()
-
 //  --- Create and drop database tasks
 configurations {
     driver
@@ -21,43 +17,37 @@ configurations.driver.each {File file ->
 
 task createDatabase() {
     doLast{
-        String createUserQuery = "create user ${username}".toString()
-        Sql.withInstance('jdbc:postgresql://localhost:5432/', admin,
-                password, 'org.postgresql.Driver', { Sql sql ->
+        String createUserQuery = "create user ${username}"
+        Sql.withInstance(jdbcURL, admin, password, driverName, { Sql sql ->
             sql.execute(createUserQuery)
         })
 
-        String createUserPasswordQuery = "alter user ${username} password \'${password}\'".toString()
-        Sql.withInstance('jdbc:postgresql://localhost:5432/', admin,
-                password, 'org.postgresql.Driver', { Sql sql ->
+        String createUserPasswordQuery = "alter user ${username} password \'${password}\'"
+        Sql.withInstance(jdbcURL, admin, password, driverName, { Sql sql ->
             sql.execute(createUserPasswordQuery)
         })
 
-        String createDbQuery = "create database ${databaseName} owner ${username}".toString()
-        Sql.withInstance('jdbc:postgresql://localhost:5432/', admin,
-                password, 'org.postgresql.Driver', { Sql sql ->
-            sql.execute(createDbQuery.toString())
+        String createDbQuery = "create database ${databaseName} owner ${username}"
+        Sql.withInstance(jdbcURL, admin, password, driverName, { Sql sql ->
+            sql.execute(createDbQuery)
         })
 
-        String createSchemaQuery = "create schema if not exists ${schemaName} authorization ${username}".toString()
-        Sql.withInstance("jdbc:postgresql://localhost:5432/${databaseName}", username,
-                password, 'org.postgresql.Driver', { Sql sql ->
-            sql.execute(createSchemaQuery.toString())
+        String createSchemaQuery = "create schema if not exists ${schemaName} authorization ${username}"
+        Sql.withInstance("${jdbcURL}${databaseName}", admin, password, driverName, { Sql sql ->
+            sql.execute(createSchemaQuery)
         })
     }
 }
 
 task dropDatabase() {
     doLast{
-        String dropDatabaseQuery = "drop database if exists ${databaseName}".toString()
-        Sql.withInstance('jdbc:postgresql://localhost:5432/', admin,
-                password, 'org.postgresql.Driver', { Sql sql ->
+        String dropDatabaseQuery = "drop database if exists ${databaseName}"
+        Sql.withInstance(jdbcURL, admin, password, driverName, { Sql sql ->
             sql.execute(dropDatabaseQuery)
         })
 
-        String dropUserQuery = "drop user if exists ${username}".toString()
-        Sql.withInstance('jdbc:postgresql://localhost:5432/', admin,
-                password, 'org.postgresql.Driver', { Sql sql ->
+        String dropUserQuery = "drop user if exists ${username}"
+        Sql.withInstance(jdbcURL, admin, password, driverName, { Sql sql ->
             sql.execute(dropUserQuery)
         })
     }

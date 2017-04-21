@@ -13,8 +13,6 @@ import static org.junit.Assert.assertEquals;
 /**
  * Test for {@link ClinicRepository}.
  * <p/>
- * Copyright (C) 2016 copyright.com
- * <p/>
  * Date: 4/14/2017
  *
  * @author Stanislau Halauniou
