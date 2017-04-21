@@ -1,7 +1,7 @@
 package com.epam.petclinic.clinic.model;
 
 /**
- * Comment here.
+ * Clinic entity.
  * <p/>
  * Date: 4/13/2017
  *

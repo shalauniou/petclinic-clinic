@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Stanislau Halauniou
  */
 @RestController
-@RequestMapping("/api/animals")
+@RequestMapping("/animals")
 public class AnimalController {
 
     @Autowired

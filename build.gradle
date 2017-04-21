@@ -49,3 +49,5 @@ dependencyManagement {
 test {
     systemProperty "spring.profiles.active", "test"
 }
+
+apply from: 'tasks.gradle'

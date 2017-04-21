@@ -4,8 +4,8 @@
 * Add `management.security.enabled: false` property into `application.yml` file if you need to connect to secured endpoints from actuator (don't commit that configuration) 
 
 # Running
-Create data base with name petclinic
-Set postgres password in the application.yml for spring.datasource.password
+Create database : configure gradle.properties and application.yml(schema name, username and password should be the same)
+run gradlew createDatabase(for dropping run: gradlew dropDatabase)
 Disable @EnableEurekaClient or run it
-Run from project root: gradle bootRun
+Run from project root: gradlew bootRun
 

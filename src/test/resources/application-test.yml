@@ -15,5 +15,8 @@ spring:
       ddl-auto: none
       naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
       format_sql: true
+    properties.hibernate.default_schema: public
 
-liquibase.changeLog: classpath:/liquibase/changelog.xml
+liquibase:
+  changeLog: classpath:/liquibase/changelog.xml
+  default-schema: public

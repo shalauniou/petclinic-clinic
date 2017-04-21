@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Stanislau Halauniou
  */
 @RestController
-@RequestMapping("/api/services")
+@RequestMapping("/services")
 public class ClinicServiceController {
 
     @Autowired

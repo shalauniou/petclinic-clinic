@@ -26,8 +26,6 @@ import static org.junit.Assert.*;
 /**
  * Tests {@link ClinicController}.
  * <p/>
- * Copyright (C) 2016 copyright.com
- * <p/>
  * Date: 4/17/2017
  *
  * @author Stanislau Halauniou
@@ -36,7 +34,7 @@ import static org.junit.Assert.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ClinicControllerTest {
 
-    private static final String CLINIC_PATH = "/api/clinics/";
+    private static final String CLINIC_PATH = "/clinics/";
     private static final String CLINIC_NAME = "Clinic Name !!!";
     private static final String CLINIC_ADDRESS = "Clinic Address !!!";
 
