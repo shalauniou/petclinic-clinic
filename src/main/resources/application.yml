@@ -14,7 +14,3 @@ spring:
       naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
       format_sql: true
     properties.hibernate.default_schema: "${schemaName}"
-
-liquibase:
-  change-log: classpath:/liquibase/changelog.xml
-  default-schema: "${schemaName}"
