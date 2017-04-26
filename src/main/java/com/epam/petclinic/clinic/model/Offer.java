@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 /**
  * Offer entity.
- * <p/>
+ *
  * Date: 4/12/2017
  *
  * @author Stanislau Halauniou

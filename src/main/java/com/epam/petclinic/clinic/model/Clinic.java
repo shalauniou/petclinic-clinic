@@ -1,13 +1,5 @@
 package com.epam.petclinic.clinic.model;
 
-/**
- * Clinic entity.
- * <p/>
- * Date: 4/13/2017
- *
- * @author Stanislau Halauniou
- */
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import groovy.transform.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -19,7 +11,7 @@ import java.util.List;
 
 /**
  * Clinic entity.
- * <p/>
+ *
  * Date: 4/12/2017
  *
  * @author Stanislau Halauniou

@@ -59,8 +59,6 @@
         <addForeignKeyConstraint baseTableName="offer" baseColumnNames="clinic_service_id"
                                  constraintName="clinic_service_id_constraint"
                                  referencedTableName="clinic_service" referencedColumnNames="id"/>
-        <rollback>
-        </rollback>
     </changeSet>
 
     <changeSet id="2017-04-13-15-00" author="Stanislau_Halauniou@epam.com">
@@ -133,9 +131,15 @@
                 <column name="animal_id">3</column>
                 <column name="clinic_service_id">2</column>
             </insert>
+
         <rollback>
+            <delete tableName="offer"/>
+            <delete tableName="clinic"/>
+            <delete tableName="clinic_service"/>
+            <delete tableName="animal"/>
         </rollback>
     </changeSet>
+
     <changeSet id="2017-04-18-17-00" author="Stanislau_Halauniou@epam.com">
         <comment>Create unique constraint for offers</comment>
         <addUniqueConstraint tableName="offer" columnNames="clinic_id, animal_id, clinic_service_id"

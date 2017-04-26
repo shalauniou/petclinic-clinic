@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * Animal entity.
- * <p/>
+ *
  * Date: 4/12/2017
  *
  * @author Stanislau Halauniou

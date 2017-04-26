@@ -4,8 +4,8 @@ import com.epam.petclinic.clinic.model.Clinic;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * Comment here.
- * <p/>
+ * Crud repository for {@link Clinic} entity.
+ *
  * Date: 4/13/2017
  *
  * @author Stanislau Halauniou

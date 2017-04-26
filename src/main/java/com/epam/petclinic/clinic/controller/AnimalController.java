@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Animal controller.
- * <p/>
+ *
  * Date: 4/18/2017
  *
  * @author Stanislau Halauniou

@@ -7,8 +7,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 /**
- * Comment here.
- * <p/>
+ * Crud repository for {@link Offer} entity.
+ *
  * Date: 4/12/2017
  *
  * @author Stanislau Halauniou

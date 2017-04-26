@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Clinic controller.
- * <p>
+ *
  * Date: 2017-04-13
  *
  * @author Stanislau_Halauniou

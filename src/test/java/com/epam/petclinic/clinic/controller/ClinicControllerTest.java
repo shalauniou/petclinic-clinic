@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests {@link ClinicController}.
- * <p/>
+ *
  * Date: 4/17/2017
  *
  * @author Stanislau Halauniou
