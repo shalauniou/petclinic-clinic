@@ -3,9 +3,9 @@ server.port: 8082
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/petclinic
-    username: petclinic_admin
-    password: 123456
+    url: "jdbc:postgresql://localhost:5432/${databaseName}"
+    username: "${username}"
+    password: "${password}"
 
   jpa:
     show-sql: true
@@ -13,8 +13,8 @@ spring:
       ddl-auto: none
       naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
       format_sql: true
-    properties.hibernate.default_schema: local
+    properties.hibernate.default_schema: "${schemaName}"
 
 liquibase:
   change-log: classpath:/liquibase/changelog.xml
-  default-schema: local
+  default-schema: "${schemaName}"

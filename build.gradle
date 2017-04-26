@@ -50,4 +50,9 @@ test {
     systemProperty "spring.profiles.active", "test"
 }
 
+processResources {
+    expand(project.properties)
+}
+
 apply from: 'tasks.gradle'
+
