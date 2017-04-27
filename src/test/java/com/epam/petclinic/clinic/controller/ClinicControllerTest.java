@@ -21,7 +21,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests {@link ClinicController}.
@@ -63,7 +66,8 @@ public class ClinicControllerTest {
     @Test
     public void testGetClinicWithOffers() {
         Clinic clinic = clinicRepository.findAll().iterator().next();
-        ParameterizedTypeReference<Clinic> responseType = new ParameterizedTypeReference<Clinic>() {};
+        ParameterizedTypeReference<Clinic> responseType = new ParameterizedTypeReference<Clinic>() {
+        };
         ResponseEntity<Clinic> responseEntity = restTemplate.exchange(getHost() + CLINIC_PATH + clinic.getId(),
                 HttpMethod.GET, null, responseType);
 

@@ -5,7 +5,13 @@ import groovy.transform.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -16,7 +22,7 @@ import java.io.Serializable;
  * @author Stanislau Halauniou
  */
 @Entity
-@Table(name= "offer")
+@Table(name = "offer")
 @EqualsAndHashCode
 public class Offer implements Serializable {
 
@@ -29,8 +35,8 @@ public class Offer implements Serializable {
     private ClinicService clinicService;
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     public String getId() {
         return id;
     }
