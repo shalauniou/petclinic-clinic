@@ -21,6 +21,11 @@ public class ClinicServiceController {
     @Autowired
     private ClinicServiceRepository repository;
 
+    /**
+     * Returns all services.
+     *
+     * @return services
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Iterable<ClinicService> getAll() {
         return repository.findAll();

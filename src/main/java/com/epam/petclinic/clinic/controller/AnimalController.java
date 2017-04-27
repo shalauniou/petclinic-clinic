@@ -21,6 +21,11 @@ public class AnimalController {
     @Autowired
     private AnimalRepository repository;
 
+    /**
+     * Returns all animals.
+     *
+     * @return all animals
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Iterable<Animal> getAll() {
         return repository.findAll();

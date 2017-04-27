@@ -15,5 +15,11 @@ import java.util.List;
  */
 public interface OfferRepository extends CrudRepository<Offer, String> {
 
+    /**
+     * Returns list of clinics.
+     *
+     * @param clinicId clinic id
+     * @return list of clinics
+     */
     List<Offer> findByClinicId(@Param("clinicId") String clinicId);
 }
