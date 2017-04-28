@@ -8,7 +8,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.liquibase:liquibase-gradle-plugin:${gradlePluginVersion}")
-        classpath ("org.postgresql:postgresql:${postgreSqlVersion}")
+        classpath("org.postgresql:postgresql:${postgreSqlVersion}")
     }
 }
 
@@ -17,6 +17,7 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'liquibase'
 apply plugin: 'checkstyle'
+apply plugin: 'project-report'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -24,6 +25,7 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
     maven { url "https://repo.spring.io/milestone" }
+    mavenLocal()
 }
 
 
@@ -33,7 +35,7 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-eureka')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-    compile("org.apache.commons:commons-lang3:${commonLangsVersion}")
+    //compile("org.apache.commons:commons-lang3")
     compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
@@ -47,6 +49,7 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.RC1"
+        mavenBom "com.epam:common-libs:1.0-SNAPSHOT"
     }
 }
 
@@ -54,11 +57,7 @@ test {
     systemProperty "spring.profiles.active", "test"
 }
 
-processResources {
-    expand(project.properties)
-}
-
-processTestResources {
+[processResources, processTestResources]*.doFirst {
     expand(project.properties)
 }
 
