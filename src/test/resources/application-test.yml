@@ -1,0 +1,22 @@
+spring.profiles.active: test
+
+server:
+  port: 9082
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:test_db;MODE=PostgreSQL;MV_STORE=FALSE;MVCC=FALSE
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      naming.implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+      format_sql: true
+    properties.hibernate.default_schema: public
+
+liquibase:
+  change-log: "classpath:/${changeLogPath}"
+  default-schema: public

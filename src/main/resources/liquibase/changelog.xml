@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd ">
+
+    <changeSet id="2017-04-13-14-00" author="Stanislau_Halauniou@epam.com">
+        <comment>Create tables</comment>
+        <createTable tableName="animal">
+            <column name="id" type="varchar(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="clinic">
+            <column name="id" type="varchar(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="clinic_service">
+            <column name="id" type="varchar(32)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="offer">
+            <column name="id" type="varchar(64)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="animal_id" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="clinic_id" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="clinic_service_id" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="offer" baseColumnNames="animal_id"
+                                 constraintName="animal_id_constraint"
+                                 referencedTableName="animal" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="offer" baseColumnNames="clinic_id"
+                                 constraintName="service_id_constraint"
+                                 referencedTableName="clinic" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="offer" baseColumnNames="clinic_service_id"
+                                 constraintName="clinic_service_id_constraint"
+                                 referencedTableName="clinic_service" referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="2017-04-13-15-00" author="Stanislau_Halauniou@epam.com">
+        <comment>Populate tables</comment>
+        <insert tableName="animal">
+            <column name="id">1</column>
+            <column name="name">Cat</column>
+        </insert>
+        <insert tableName="animal">
+            <column name="id">2</column>
+            <column name="name">Dog</column>
+        </insert>
+        <insert tableName="animal">
+            <column name="id">3</column>
+            <column name="name">Alligator</column>
+        </insert>
+
+        <insert tableName="clinic_service">
+            <column name="id">1</column>
+            <column name="name">Injection</column>
+        </insert>
+        <insert tableName="clinic_service">
+            <column name="id">2</column>
+            <column name="name">Swiming</column>
+        </insert>
+        <insert tableName="clinic_service">
+            <column name="id">3</column>
+            <column name="name">Jumping</column>
+        </insert>
+
+        <insert tableName="clinic">
+            <column name="id">1</column>
+            <column name="name">Home animals</column>
+            <column name="address">Addr 1</column>
+        </insert>
+        <insert tableName="clinic">
+            <column name="id">2</column>
+            <column name="name">Wild Animals</column>
+            <column name="address">Addr 2</column>
+        </insert>
+
+        <!-- Populating clinic offers -->
+        <insert tableName="offer">
+            <column name="id">9c68b9ed-9612-442f-b3a2-dd910ea34cbe</column>
+            <column name="clinic_id">1</column>
+            <column name="animal_id">1</column>
+            <column name="clinic_service_id">1</column>
+        </insert>
+        <insert tableName="offer">
+            <column name="id">d715652a-80be-4939-b816-283455a1a3c7</column>
+            <column name="clinic_id">1</column>
+            <column name="animal_id">2</column>
+            <column name="clinic_service_id">1</column>
+        </insert>
+        <insert tableName="offer">
+            <column name="id">5f198a7f-126f-465e-8ac2-a6fd6e5fed33</column>
+            <column name="clinic_id">1</column>
+            <column name="animal_id">2</column>
+            <column name="clinic_service_id">2</column>
+        </insert>
+        <insert tableName="offer">
+            <column name="id">5f49a8de-f534-4c7a-b782-dc3ebe98b7a7</column>
+            <column name="clinic_id">1</column>
+            <column name="animal_id">1</column>
+            <column name="clinic_service_id">3</column>
+        </insert>
+        <insert tableName="offer">
+            <column name="id">e6a6a49a-cc61-4440-9e0b-dddf3e737223</column>
+            <column name="clinic_id">2</column>
+            <column name="animal_id">3</column>
+            <column name="clinic_service_id">2</column>
+        </insert>
+
+        <rollback>
+            <delete tableName="offer"/>
+            <delete tableName="clinic"/>
+            <delete tableName="clinic_service"/>
+            <delete tableName="animal"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2017-04-18-17-00" author="Stanislau_Halauniou@epam.com">
+        <comment>Create unique constraint for offers</comment>
+        <addUniqueConstraint tableName="offer" columnNames="clinic_id, animal_id, clinic_service_id"
+                             constraintName="unique_offer"/>
+    </changeSet>
+
+</databaseChangeLog>
