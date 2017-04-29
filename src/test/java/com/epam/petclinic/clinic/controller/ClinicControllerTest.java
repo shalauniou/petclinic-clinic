@@ -57,7 +57,7 @@ public class ClinicControllerTest {
 
     @Test
     public void testGetAllClinics() {
-        List<Clinic> clinics = restTemplate.getForObject(getHost() + CLINIC_PATH, List.class);
+        List clinics = restTemplate.getForObject(getHost() + CLINIC_PATH, List.class);
 
         assertNotNull(clinics);
         assertFalse(clinics.isEmpty());
