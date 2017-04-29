@@ -2,7 +2,7 @@ package com.epam.petclinic.clinic.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import groovy.transform.EqualsAndHashCode;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;

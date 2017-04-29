@@ -1,7 +1,7 @@
 package com.epam.petclinic.clinic.model;
 
 import groovy.transform.EqualsAndHashCode;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

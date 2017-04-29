@@ -37,7 +37,6 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-eureka')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-    compile("org.apache.commons:commons-lang3:${commonLangsVersion}")
     compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
@@ -46,12 +45,12 @@ dependencies {
     runtime('com.h2database:h2')
     testCompile('org.liquibase:liquibase-core')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile("org.springframework.restdocs:spring-restdocs-mockmvc:${restDocsMvcVersion}")
+    testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 }
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.RC1"
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.RC1'
     }
 }
 
@@ -64,7 +63,7 @@ ext {
 }
 
 test {
-    systemProperty "spring.profiles.active", "test"
+    systemProperty 'spring.profiles.active', 'test'
 }
 
 [processResources, processTestResources]*.doFirst {
