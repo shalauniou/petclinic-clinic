@@ -1,4 +1,4 @@
-spring.application.name: CLINIC_SERVICE
+spring.application.name: CLINIC-SERVICE
 
 ##Specify where is a Configuration Server
 #spring.cloud.config.uri: http://localhost:8084
@@ -12,8 +12,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://127.0.0.1:8080/eureka/
-    healthcheck:
-      enabled: true
     lease:
       duration: 50
 
