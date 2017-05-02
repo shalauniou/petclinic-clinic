@@ -1,7 +1,7 @@
 package com.epam.petclinic.clinic.model;
 
-import groovy.transform.EqualsAndHashCode;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,6 +18,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "animal")
 @EqualsAndHashCode
+@ToString
 public class Animal implements Serializable {
 
     @Id
@@ -39,13 +40,5 @@ public class Animal implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("id", id)
-                .append("name", name)
-                .toString();
     }
 }

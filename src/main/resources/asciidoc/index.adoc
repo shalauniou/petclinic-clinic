@@ -86,3 +86,17 @@ include::{snippets}/clinic-list/http-request.adoc[]
 include::{snippets}/clinic-list/http-response.adoc[]
 
 [[resource-clinic-create]]
+
+[[resource-clinic-create]]
+=== Create clinic
+A `POST` request for creating clinic.
+
+==== Example request
+
+include::{snippets}/clinic-create/http-request.adoc[]
+
+==== Example response
+
+include::{snippets}/clinic-create/http-response.adoc[]
+
+[[resource-clinic-create]]

@@ -16,16 +16,21 @@ import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.transaction.Transactional;
 
+import static org.junit.Assert.assertEquals;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -40,6 +45,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
 public class ClinicControllerIntegrationTest {
+
+    private static final String CLINIC_NAME = "Clinic Name";
+    private static final String CLINIC_ADDRESS = "Clinic Address";
 
     /**
      * Rest documentation.
@@ -57,6 +65,7 @@ public class ClinicControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     private MockMvc mockMvc;
+    private RestDocumentationResultHandler document;
 
     @Before
     public void setUp() {
@@ -68,7 +77,7 @@ public class ClinicControllerIntegrationTest {
     @Test
     public void testGetClinic() throws Exception {
         Clinic clinic = clinicRepository.save(getClinic("Clinic Name", "Clinic Address"));
-        RestDocumentationResultHandler document = MockMvcRestDocumentation.document("clinic-list", responseFields(
+        document = MockMvcRestDocumentation.document("clinic-list", responseFields(
                 fieldWithPath("id").description("The clinic ID"),
                 fieldWithPath("name").description("The clinic name"),
                 fieldWithPath("address").description("The clinic address"),
@@ -76,8 +85,31 @@ public class ClinicControllerIntegrationTest {
         );
         mockMvc.perform(get("/clinics/" + clinic.getId()).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(document).andExpect(content()
-                .json(objectMapper.writer().writeValueAsString(clinic)));
+                .andDo(document)
+                .andExpect(content().json(objectMapper.writer().writeValueAsString(clinic)));
+    }
+
+    @Test
+    public void testSaveClinic() throws Exception {
+        Clinic clinic = getClinic(CLINIC_NAME, CLINIC_ADDRESS);
+        document = MockMvcRestDocumentation.document("clinic-create", requestFields(
+                fieldWithPath("id").description("The clinic ID"),
+                fieldWithPath("name").description("The clinic name"),
+                fieldWithPath("address").description("The clinic address"),
+                fieldWithPath("offers").description("The clinic offers"))
+        );
+        MvcResult result = mockMvc.perform(post("/clinics/")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(clinic)))
+                .andDo(document)
+                .andExpect(jsonPath("name").value(CLINIC_NAME))
+                .andExpect(jsonPath("address").value(CLINIC_ADDRESS))
+                .andReturn();
+        String jsonResult = result.getResponse().getContentAsString();
+        String id =  objectMapper.reader().readTree(jsonResult).get("id").asText();
+        clinic.setId(id);
+        assertEquals(clinic, clinicRepository.findOne(id));
     }
 
     private Clinic getClinic(String name, String address) {

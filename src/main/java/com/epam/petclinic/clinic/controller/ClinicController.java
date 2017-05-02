@@ -3,6 +3,7 @@ package com.epam.petclinic.clinic.controller;
 import com.epam.petclinic.clinic.model.Clinic;
 import com.epam.petclinic.clinic.model.Offer;
 import com.epam.petclinic.clinic.repository.ClinicRepository;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import java.util.List;
 
@@ -38,7 +40,9 @@ class ClinicController {
     @CrossOrigin
     public Clinic create(@RequestBody Clinic clinic) {
         List<Offer> offers = clinic.getOffers();
-        offers.stream().forEach(offer -> offer.setClinic(clinic));
+        if (CollectionUtils.isNotEmpty(offers)) {
+            offers.stream().forEach(offer -> offer.setClinic(clinic));
+        }
         return clinicRepository.save(clinic);
     }
 
@@ -55,7 +59,9 @@ class ClinicController {
     public Clinic update(@RequestBody Clinic clinic, @PathVariable String id) {
         clinicRepository.delete(id);
         List<Offer> offers = clinic.getOffers();
-        offers.stream().forEach(offer -> offer.setClinic(clinic));
+        if (CollectionUtils.isNotEmpty(offers)) {
+            offers.stream().forEach(offer -> offer.setClinic(clinic));
+        }
         clinicRepository.save(clinic);
         return clinic;
     }
