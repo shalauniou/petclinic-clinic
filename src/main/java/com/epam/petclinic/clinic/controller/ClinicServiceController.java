@@ -3,10 +3,10 @@ package com.epam.petclinic.clinic.controller;
 import com.epam.petclinic.clinic.model.ClinicService;
 import com.epam.petclinic.clinic.repository.ClinicServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * Clinic Service controller.

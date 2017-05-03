@@ -94,6 +94,15 @@ public class ClinicControllerTest {
     }
 
     @Test
+    public void testGetClinicIdsByAnimalAndServices() {
+        Animal animal = animalRepository.findAll().iterator().next();
+        ClinicService service = clinicServiceRepository.findAll().iterator().next();
+        assertNotNull(restTemplate.getForObject(getHost() + CLINIC_PATH
+                + String.format("by-animal-services?animalId=%s&serviceIds=%s", animal.getId(), service.getId()),
+                List.class));
+    }
+
+    @Test
     public void testDeleteClinic() {
         Clinic clinic = getClinic();
 

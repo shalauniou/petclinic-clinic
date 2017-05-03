@@ -1,20 +1,20 @@
 package com.epam.petclinic.clinic.controller;
 
 import com.epam.petclinic.clinic.model.Clinic;
-import com.epam.petclinic.clinic.model.Offer;
 import com.epam.petclinic.clinic.repository.ClinicRepository;
-import org.apache.commons.collections.CollectionUtils;
+import com.epam.petclinic.clinic.repository.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Clinic controller.
@@ -30,6 +30,9 @@ class ClinicController {
     @Autowired
     private ClinicRepository clinicRepository;
 
+    @Autowired
+    private OfferRepository offerRepository;
+
     /**
      * Creates clinic.
      *
@@ -39,10 +42,8 @@ class ClinicController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @CrossOrigin
     public Clinic create(@RequestBody Clinic clinic) {
-        List<Offer> offers = clinic.getOffers();
-        if (CollectionUtils.isNotEmpty(offers)) {
-            offers.stream().forEach(offer -> offer.setClinic(clinic));
-        }
+        Optional.ofNullable(clinic.getOffers()).ifPresent(
+                offers -> offers.stream().forEach(offer -> offer.setClinic(clinic)));
         return clinicRepository.save(clinic);
     }
 
@@ -58,10 +59,8 @@ class ClinicController {
     @CrossOrigin
     public Clinic update(@RequestBody Clinic clinic, @PathVariable String id) {
         clinicRepository.delete(id);
-        List<Offer> offers = clinic.getOffers();
-        if (CollectionUtils.isNotEmpty(offers)) {
-            offers.stream().forEach(offer -> offer.setClinic(clinic));
-        }
+        Optional.ofNullable(clinic.getOffers()).ifPresent(
+                offers -> offers.stream().forEach(offer -> offer.setClinic(clinic)));
         clinicRepository.save(clinic);
         return clinic;
     }
@@ -76,6 +75,20 @@ class ClinicController {
     public void delete(@PathVariable String id) {
         Clinic clinicForDelete = clinicRepository.findOne(id);
         clinicRepository.delete(clinicForDelete);
+    }
+
+    /**
+     * Returns list of clinic ids by animal id and service's ids.
+     *
+     * @param animalId animal id
+     * @param serviceIds list of service's ids
+     * @return list of clinic ids
+     */
+    @CrossOrigin
+    @RequestMapping(value = "/by-animal-services", method = RequestMethod.GET)
+    public List<String> getClinicsByAnimalAndServices(@RequestParam("animalId") String animalId,
+                                                      @RequestParam("serviceIds") List<String> serviceIds) {
+        return offerRepository.findClinicByAnimalIdAndServices(animalId, serviceIds, (long) serviceIds.size());
     }
 
     /**
