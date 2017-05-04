@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  * Animal controller.
@@ -27,6 +28,7 @@ public class AnimalController {
      * @return all animals
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    @CrossOrigin
     public Iterable<Animal> getAll() {
         return repository.findAll();
     }
