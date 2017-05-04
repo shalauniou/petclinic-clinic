@@ -1,6 +1,7 @@
 package com.epam.petclinic.clinic.repository;
 
 import com.epam.petclinic.clinic.model.Offer;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -16,10 +17,16 @@ import java.util.List;
 public interface OfferRepository extends CrudRepository<Offer, String> {
 
     /**
-     * Returns list of clinics.
+     * Returns list of clinic ids by animal id and service's ids.
      *
-     * @param clinicId clinic id
-     * @return list of clinics
+     * @param animalId animal id
+     * @param services list of service's ids
+     * @param count count of services
+     * @return list of clinic ids
      */
-    List<Offer> findByClinicId(@Param("clinicId") String clinicId);
+    @Query("SELECT u.clinic.id FROM Offer u where u.animal.id=:animalId and u.clinicService.id in :serviceIds "
+            + "group by u.clinic.id having count(*)=:count")
+    List<String> findClinicByAnimalIdAndServices(@Param("animalId") String animalId,
+                                                 @Param("serviceIds") List<String> services,
+                                                 @Param("count") Long count);
 }

@@ -1,8 +1,8 @@
 package com.epam.petclinic.clinic.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import groovy.transform.EqualsAndHashCode;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;
@@ -24,7 +24,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "clinic")
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"id", "name", "address"})
+@ToString(of = {"id", "name", "address"})
 public class Clinic implements Serializable {
 
     private String id;
@@ -70,15 +71,5 @@ public class Clinic implements Serializable {
 
     public void setOffers(List<Offer> offers) {
         this.offers = offers;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("id", id)
-                .append("name", name)
-                .append("address", address)
-                .append("offers", offers)
-                .toString();
     }
 }

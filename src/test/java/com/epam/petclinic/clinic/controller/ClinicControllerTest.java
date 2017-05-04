@@ -57,7 +57,7 @@ public class ClinicControllerTest {
 
     @Test
     public void testGetAllClinics() {
-        List<Clinic> clinics = restTemplate.getForObject(getHost() + CLINIC_PATH, List.class);
+        List<?> clinics = restTemplate.getForObject(getHost() + CLINIC_PATH, List.class);
 
         assertNotNull(clinics);
         assertFalse(clinics.isEmpty());
@@ -91,6 +91,15 @@ public class ClinicControllerTest {
         assertNotNull(clinicRepository.findOne(id));
 
         restTemplate.delete(getHost() + CLINIC_PATH + id);
+    }
+
+    @Test
+    public void testGetClinicIdsByAnimalAndServices() {
+        Animal animal = animalRepository.findAll().iterator().next();
+        ClinicService service = clinicServiceRepository.findAll().iterator().next();
+        assertNotNull(restTemplate.getForObject(getHost() + CLINIC_PATH
+                + String.format("by-animal-services?animalId=%s&serviceIds=%s", animal.getId(), service.getId()),
+                List.class));
     }
 
     @Test

@@ -12,6 +12,4 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ClinicRepository extends CrudRepository<Clinic, String> {
 
-    /*@Query("SELECT u FROM Clinic u LEFT JOIN FETCH u.offers where u.id=?1")
-    public Clinic findClinicWithOffersById(@Param("id") String id);*/
 }
