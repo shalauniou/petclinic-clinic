@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -35,6 +35,7 @@ class ClinicController {
      * @return created clinic
      */
     @RequestMapping(value = "/", method = RequestMethod.POST)
+    @CrossOrigin
     public Clinic create(@RequestBody Clinic clinic) {
         List<Offer> offers = clinic.getOffers();
         offers.stream().forEach(offer -> offer.setClinic(clinic));
@@ -50,6 +51,7 @@ class ClinicController {
      */
     @Transactional
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @CrossOrigin
     public Clinic update(@RequestBody Clinic clinic, @PathVariable String id) {
         clinicRepository.delete(id);
         List<Offer> offers = clinic.getOffers();
@@ -64,6 +66,7 @@ class ClinicController {
      * @param id clinic id
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @CrossOrigin
     public void delete(@PathVariable String id) {
         Clinic clinicForDelete = clinicRepository.findOne(id);
         clinicRepository.delete(clinicForDelete);
@@ -75,6 +78,7 @@ class ClinicController {
      * @return all clinics
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    @CrossOrigin
     public Iterable<Clinic> getAll() {
         return clinicRepository.findAll();
     }
@@ -86,6 +90,7 @@ class ClinicController {
      * @return clinic
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @CrossOrigin
     public Clinic getClinicWithOffers(@PathVariable String id) {
         return clinicRepository.findOne(id);
     }
