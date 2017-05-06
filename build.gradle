@@ -2,28 +2,41 @@ buildscript {
     ext {
         springBootVersion = '1.5.2.RELEASE'
     }
+
     repositories {
         mavenCentral()
         jcenter()
+        if (project.hasProperty('developPlugins')) {
+            mavenLocal()
+        } else {
+            maven { url 'https://jitpack.io' }
+        }
     }
+
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.liquibase:liquibase-gradle-plugin:${gradlePluginVersion}")
         classpath("org.postgresql:postgresql:${postgreSqlVersion}")
         classpath("org.asciidoctor:asciidoctor-gradle-plugin:${asciidoctorPluginVersion}")
+        if (project.hasProperty('developPlugins')) {
+            classpath("com.epam.petclinic.plugin:petclinic-plugins:${pluginsVersionToUse}")
+        } else {
+            classpath("com.github.shalauniou:petclinic-plugins:${pluginsVersionToUse}")
+        }
     }
 }
 
-apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'liquibase'
-apply plugin: 'checkstyle'
+apply plugin: 'groovy'
 apply plugin: 'project-report'
 apply plugin: 'org.asciidoctor.convert'
+apply plugin: 'petclinic-java'
+apply plugin: 'petclinic-artifactory'
 
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+/*version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8*/
 
 repositories {
     mavenCentral()
@@ -83,11 +96,11 @@ liquibase {
     }
 }
 
-checkstyle {
+/*checkstyle {
     toolVersion = '7.1'
     configProperties.suppressionsFile = rootProject.file('/checkstyle/checkstyle-suppressions.xml')
     configFile = rootProject.file('/checkstyle/checkstyle-rules.xml')
-}
+}*/
 
 asciidoctor {
     attributes 'snippets': snippetsDir
