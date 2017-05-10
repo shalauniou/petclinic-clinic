@@ -5,12 +5,14 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
+        mavenLocal()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.liquibase:liquibase-gradle-plugin:${gradlePluginVersion}")
         classpath("org.postgresql:postgresql:${postgreSqlVersion}")
         classpath("org.asciidoctor:asciidoctor-gradle-plugin:${asciidoctorPluginVersion}")
+        classpath("com.epam.petclinic.plugin:petclinic-plugins:${petclinicPluginsVersion}")
     }
 }
 
@@ -21,6 +23,8 @@ apply plugin: 'liquibase'
 apply plugin: 'checkstyle'
 apply plugin: 'project-report'
 apply plugin: 'org.asciidoctor.convert'
+apply plugin: 'petclinic-java'
+apply plugin: 'petclinic-code-coverage'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -83,12 +87,6 @@ liquibase {
     }
 }
 
-checkstyle {
-    toolVersion = '7.1'
-    configProperties.suppressionsFile = rootProject.file('/checkstyle/checkstyle-suppressions.xml')
-    configFile = rootProject.file('/checkstyle/checkstyle-rules.xml')
-}
-
 asciidoctor {
     attributes 'snippets': snippetsDir
     inputs.dir snippetsDir
@@ -99,3 +97,5 @@ asciidoctor {
 
 apply from: 'tasks.gradle'
 
+//TODO: improve code coverage and remove
+checkMinimumCoverage.enabled=false
