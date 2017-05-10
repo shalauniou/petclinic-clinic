@@ -41,7 +41,7 @@ public class ClinicControllerTest {
     private static final String CLINIC_NAME = "Clinic Name !!!";
     private static final String CLINIC_ADDRESS = "Clinic Address !!!";
 
-    private RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
 
     @LocalServerPort
     private int port;
