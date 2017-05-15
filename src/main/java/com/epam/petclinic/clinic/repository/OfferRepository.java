@@ -1,11 +1,11 @@
 package com.epam.petclinic.clinic.repository;
 
+import java.util.List;
+
 import com.epam.petclinic.clinic.model.Offer;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 /**
  * Crud repository for {@link Offer} entity.
@@ -29,4 +29,12 @@ public interface OfferRepository extends CrudRepository<Offer, String> {
     List<String> findClinicByAnimalIdAndServices(@Param("animalId") String animalId,
                                                  @Param("serviceIds") List<String> services,
                                                  @Param("count") Long count);
+
+    /**
+     * Returns list of offers by animal id.
+     *
+     * @param id animal id
+     * @return list of offers
+     */
+    List<Offer> findOffersByAnimalId(@Param("animalId") String id);
 }
