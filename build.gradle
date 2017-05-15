@@ -11,23 +11,19 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.liquibase:liquibase-gradle-plugin:${gradlePluginVersion}")
         classpath("org.postgresql:postgresql:${postgreSqlVersion}")
-        classpath("org.asciidoctor:asciidoctor-gradle-plugin:${asciidoctorPluginVersion}")
         classpath("com.epam.petclinic.plugin:petclinic-plugins:${petclinicPluginsVersion}")
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'liquibase'
 apply plugin: 'checkstyle'
 apply plugin: 'project-report'
-apply plugin: 'org.asciidoctor.convert'
 apply plugin: 'petclinic-java'
 apply plugin: 'petclinic-code-coverage'
+apply plugin: 'petclinic-idea'
+apply plugin: 'petclinic-ascii-doctor'
 
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -59,14 +55,6 @@ dependencyManagement {
     }
 }
 
-jar {
-    dependsOn asciidoctor
-}
-
-ext {
-    snippetsDir = file('build/generated-snippets')
-}
-
 test {
     systemProperty 'spring.profiles.active', 'test'
 }
@@ -85,14 +73,6 @@ liquibase {
             password "${password}"
         }
     }
-}
-
-asciidoctor {
-    attributes 'snippets': snippetsDir
-    inputs.dir snippetsDir
-    outputDir "build/asciidoc"
-    dependsOn test
-    sourceDir 'src/main/resources/asciidoc'
 }
 
 apply from: 'tasks.gradle'

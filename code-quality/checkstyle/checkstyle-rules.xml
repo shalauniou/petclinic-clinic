@@ -362,11 +362,11 @@
         <!-- <property name="suppressLoadErrors"           value="false"/> -->
         <!-- <property name="tokens"                       value="METHOD_DEF, CTOR_DEF"/> -->
         <module name="JavadocMethod">
+            <property name="severity" value="warning"/>
             <property name="validateThrows" value="true"/>
             <property name="allowUndeclaredRTE" value="true"/>
             <property name="allowThrowsTagsForSubclasses" value="true"/>
-            <property name="allowMissingPropertyJavadoc" value="true"/>
-            <property name="scope" value="package"/>
+            <property name="excludeScope" value="private"/>
         </module>
 
         <!-- Validates Javadoc comments to help ensure they are well formed. -->

@@ -7,6 +7,7 @@
 <suppressions>
     <suppress files=".*Application.java" checks="HideUtilityClassConstructor"/>
 
+    <suppress files="[\\/]model[\\/].*.java" checks="JavadocMethod"/>
     <!-- TESTS -->
     <suppress files=".*[\\/]src[\\/]test[a-zA-Z]*[\\/].*.java" checks="JavadocMethod"/>
     <suppress files=".*[\\/]src[\\/]test[a-zA-Z]*[\\/].*.java" checks="MethodCount"/>
