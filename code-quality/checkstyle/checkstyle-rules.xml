@@ -362,7 +362,7 @@
         <!-- <property name="suppressLoadErrors"           value="false"/> -->
         <!-- <property name="tokens"                       value="METHOD_DEF, CTOR_DEF"/> -->
         <module name="JavadocMethod">
-            <property name="severity" value="warning"/>
+            <property name="severity" value="error"/>
             <property name="validateThrows" value="true"/>
             <property name="allowUndeclaredRTE" value="true"/>
             <property name="allowThrowsTagsForSubclasses" value="true"/>
