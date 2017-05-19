@@ -1,0 +1,7 @@
+/*
+ * COPYRIGHT:     Copyright © 2017 Petclinic
+ */
+
+javaQuality {
+    checkstyleSupressionPath '/code-quality/checkstyle/checkstyle-suppressions.xml'
+}

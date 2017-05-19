@@ -20,3 +20,6 @@ Also spring boot version:1.5.2.RELEASE used dependencies from
 http://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent/1.5.2.RELEASE
 and additionally for version configuration with org.springframework.cloud:spring-cloud-dependencies:Dalston.RC1 see
 https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies/Dalston.RC1
+
+# Code quality
+Add code-quality folder to .gitignore

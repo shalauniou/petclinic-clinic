@@ -20,6 +20,7 @@ apply plugin: 'petclinic-code-coverage'
 apply plugin: 'petclinic-idea'
 apply plugin: 'petclinic-ascii-doctor'
 apply plugin: 'petclinic-database'
+apply from: 'extensions.gradle'
 
 
 repositories {
