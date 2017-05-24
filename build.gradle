@@ -15,11 +15,12 @@ buildscript {
 
 apply plugin: 'org.springframework.boot'
 apply plugin: 'project-report'
-apply plugin: 'petclinic-java'
-apply plugin: 'petclinic-code-coverage'
-apply plugin: 'petclinic-idea'
-apply plugin: 'petclinic-ascii-doctor'
-apply plugin: 'petclinic-database'
+apply plugin: 'com.epam.petclinic.java'
+apply plugin: 'com.epam.petclinic.idea'
+apply plugin: 'com.epam.petclinic.code-coverage'
+apply plugin: 'com.epam.petclinic.ascii-doctor'
+apply plugin: 'com.epam.petclinic.database'
+apply from: 'extensions.gradle'
 
 
 repositories {
