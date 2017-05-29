@@ -1,5 +1,8 @@
 package com.epam.petclinic.clinic.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.epam.petclinic.clinic.model.Clinic;
 import com.epam.petclinic.clinic.repository.ClinicRepository;
 import com.epam.petclinic.clinic.repository.OfferRepository;
@@ -12,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Clinic controller.

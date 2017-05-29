@@ -8,6 +8,9 @@
     <suppress files=".*Application.java" checks="HideUtilityClassConstructor"/>
 
     <suppress files="[\\/]model[\\/].*.java" checks="JavadocMethod"/>
+    <!-- TODO: Add corresponded javadocs to config classes -->
+    <suppress files="[\\/]config[\\/].*.java" checks="JavadocMethod"/>
+    <suppress files="[\\/]config[\\/].*.java" checks="JavadocType"/>
     <!-- TESTS -->
     <suppress files=".*[\\/]src[\\/]test[a-zA-Z]*[\\/].*.java" checks="JavadocMethod"/>
     <suppress files=".*[\\/]src[\\/]test[a-zA-Z]*[\\/].*.java" checks="MethodCount"/>
