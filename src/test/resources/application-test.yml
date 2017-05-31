@@ -18,5 +18,5 @@ spring:
     properties.hibernate.default_schema: public
 
 liquibase:
-  change-log: "classpath:/${changeLogPath}"
+  change-log: "classpath:/liquibase/changelog.xml"
   default-schema: public

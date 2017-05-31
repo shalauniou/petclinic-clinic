@@ -4,7 +4,7 @@
 * Add `management.security.enabled: false` property into `application.yml` file if you need to connect to secured endpoints from actuator (don't commit that configuration) 
 
 # Prepare plugins
-Download the petclinic-plugins and read readme.md
+Clone the petclinic-plugins from https://github.com/Andrei-Khadziukou/petclinic-plugins/ and read readme.md
 
 # Running
 Create the database : configure gradle.properties and run gradlew createDatabase(for dropping run: gradlew dropDatabase)
