@@ -4,8 +4,8 @@ server.port: 8082
 spring:
   datasource:
     url: "jdbc:postgresql://localhost:5432/${databaseName}"
-    username: "${username}"
-    password: "${password}"
+    username: "${dbAdminName}"
+    password: "${dbAdminPassword}"
 
   jpa:
     show-sql: true
