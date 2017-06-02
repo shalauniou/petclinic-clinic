@@ -39,6 +39,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.projectlombok:lombok')
+    runtime('org.springframework.retry:spring-retry')
+    runtime('org.springframework.boot:spring-boot-starter-aop')
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('org.postgresql:postgresql')
     runtime('com.h2database:h2')
